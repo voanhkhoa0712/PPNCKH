@@ -64,14 +64,14 @@ class RFRNetModel():
                 self.update_parameters()
                 self.iter += 1
                 
-                if self.iter % 50 == 0:
+                if self.iter % 25 == 0:
                     e_time = time.time()
                     int_time = e_time - s_time
-                    print("Iteration:%d, l1_loss:%.4f, time_taken:%.2f" %(self.iter, self.l1_loss_val/50, int_time))
+                    print("Iteration:%d, l1_loss:%.4f, time_taken:%.2f" %(self.iter, self.l1_loss_val/25, int_time))
                     s_time = time.time()
                     self.l1_loss_val = 0.0
                 
-                if self.iter % 2000 == 0:
+                if self.iter % 1000 == 0:
                     if not os.path.exists('{:s}'.format(save_path)):
                         os.makedirs('{:s}'.format(save_path))
                     save_ckpt('{:s}/g_{:d}.pth'.format(save_path, self.iter ), [('generator', self.G)], [('optimizer_G', self.optm_G)], self.iter )
