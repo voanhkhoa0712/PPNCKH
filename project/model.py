@@ -64,10 +64,10 @@ class RFRNetModel():
                 self.update_parameters()
                 self.iter += 1
                 
-                if self.iter % 25 == 0:
+                if self.iter % 100 == 0:
                     e_time = time.time()
                     int_time = e_time - s_time
-                    print("Iteration:%d, l1_loss:%.4f, time_taken:%.2f" %(self.iter, self.l1_loss_val/25, int_time))
+                    print("Iteration:%d, l1_loss:%.4f, time_taken:%.2f" %(self.iter, self.l1_loss_val/100, int_time))
                     s_time = time.time()
                     self.l1_loss_val = 0.0
                 
