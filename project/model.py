@@ -87,16 +87,16 @@ class RFRNetModel():
             masks = torch.cat([masks]*3, dim = 1)
             fake_B, mask = self.G(masked_images, masks)
             comp_B = fake_B * (1 - masks) + gt_images * masks
-            if not os.path.exists('{:s}/results'.format(result_save_path)):
-                os.makedirs('{:s}/results'.format(result_save_path))
+            if not os.path.exists('{:s}'.format(result_save_path)):
+                os.makedirs('{:s}'.format(result_save_path))
             for k in range(comp_B.size(0)):
                 count += 1
                 grid = make_grid(comp_B[k:k+1])
-                file_path = '{:s}/result_final/img_{:d}.png'.format(result_save_path, count)
+                file_path = '{:s}/img_{:d}.png'.format(result_save_path, count)
                 save_image(grid, file_path)
                 
                 grid = make_grid(masked_images[k:k+1] +1 - masks[k:k+1] )
-                file_path = '{:s}/result_final/masked_img_{:d}.png'.format(result_save_path, count)
+                file_path = '{:s}/masked_img_{:d}.png'.format(result_save_path, count)
                 save_image(grid, file_path)
     
     def forward(self, masked_image, mask, gt_image):
