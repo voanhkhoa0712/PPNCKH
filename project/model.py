@@ -82,7 +82,7 @@ class RFRNetModel():
             para.requires_grad = False
         count = 0
         for items in test_loader:
-            gt_images, masks = self.cuda(*items)
+            gt_images, masks = self.__cuda__(*items)
             masked_images = gt_images * masks
             masks = torch.cat([masks]*3, dim = 1)
             fake_B, mask = self.G(masked_images, masks)
